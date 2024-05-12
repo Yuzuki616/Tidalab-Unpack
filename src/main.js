@@ -27,7 +27,7 @@ function init () {
   })
 
   // run uniproxy
-  let uniproxyName = "darwin" === process.platform ? "singproxy" : "uniproxy.exe"
+  let uniproxyName = "darwin" === process.platform ? "uniproxy" : "uniproxy.exe"
   killPort(33212)
   let uniproxy = exec(path.join(process.resourcesPath, "libs/", process.platform + "-" + process.arch, uniproxyName), [
     "-host",

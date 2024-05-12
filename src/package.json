@@ -28,6 +28,10 @@
       {
         "from": "../libs/geo",
         "to": "./libs/${env.target}-${arch}"
+      },
+      {
+        "from": "../libs/config",
+        "to": "./libs/${env.target}-${arch}"
       }
     ],
     "files": [

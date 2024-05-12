@@ -1,6 +1,8 @@
 const { app, BrowserWindow, Tray, dialog, ipcMain, Menu } = require('electron')
 const path = require('path')
 const express = require('express')
+const exec = require('child_process').spawn
+const killPort = require('kill-port')
 
 let win
 
@@ -23,6 +25,27 @@ function init () {
       enableRemoteModule: true
     }
   })
+
+  // run uniproxy
+  let uniproxyName = "darwin" === process.platform ? "singproxy" : "uniproxy.exe"
+  killPort(33212)
+  let uniproxy = exec(path.join(process.resourcesPath, "libs/", process.platform + "-" + process.arch, uniproxyName), [
+    "-host",
+    "127.0.0.1",
+    "-port",
+    "33212",
+    "-conf",
+    path.join(process.resourcesPath, "libs/", process.platform + "-" + process.arch, "config.json")
+  ], {
+    cwd: path.join(process.resourcesPath, "libs/", process.platform + "-" + process.arch)
+  }, (err, stdout, stderr) => {
+    if (err) {
+      console.error(err)
+      return
+    }
+    console.log(stderr)
+    console.error(stdout)
+  });
 
   if (app.isPackaged) {
     const server = express()
@@ -60,6 +83,7 @@ function init () {
     win.show()
   })
   ipcMain.on('quit', () => {
+    uniproxy.kill()
     global.isQuit = true
     app.quit()
   })

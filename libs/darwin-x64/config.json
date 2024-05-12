@@ -1,0 +1,11 @@
+{
+  "Log": {
+    "Level": "info"
+  },
+  "Api": {
+    "Baseurl": [
+      "https://your-api-url.com"
+    ],
+    "Balance": "round"
+  }
+}

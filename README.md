@@ -3,8 +3,8 @@ V2board 潮汐客户端的解包后文件以及 Electron-builder 构建选项补
 
 ## 使用
 1、搜索 `$title$` 替换为你的站点标题。  
-2、在 `res` 路径下放置你的图标文件。
-3、将你的V2board地址填入 `config.json` ，支持多个，支持不加权轮询和随机
+2、在 `res` 路径下放置你的图标文件。  
+3、将你的V2board地址填入 `config.json` ，支持多个，支持不加权轮询和随机  
 4、安装 `Electron-builder`，执行 `bash build.sh`。
 
 ## 声明
